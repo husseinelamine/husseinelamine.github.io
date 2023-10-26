@@ -1,55 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Science Student Portfolio</title>
-    <link href="./main.css" type="stylesheet/css">
-
-</head>
-
-<body>
-    <header>
-        <h1>Computer Science Student Portfolio</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I am a passionate computer science student. Here is a brief overview of my skills and interests in the field of computer science.</p>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <h3>Project 1: Project Name</h3>
-        <p>Description of project 1.</p>
-
-        <h3>Project 2: Project Name</h3>
-        <p>Description of project 2.</p>
-
-        <!-- Add more projects as needed -->
-    </section>
-
-    <section id="webgl-cube">
-        <h2>WebGL Cube Scene</h2>
-        <iframe src="webgl_cube.html" width="100%" height="400px" frameborder="0"></iframe>
-    </section>
-    
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: your.email@example.com</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Computer Science Student Portfolio. All rights reserved.</p>
-    </footer>
-</body>
-
+<html>
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+        <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@v0.157.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@v0.157.0/examples/jsm/"
+              }
+            }
+        </script>
+	</head>
+	<body>
+		<script type="module" src="main.js"></script>
+	</body>
 </html>
