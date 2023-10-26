@@ -1,0 +1,14 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-header primaryBGColor">
+    <div class="container-fluid">
+        <a href="dummy" type="button" id="sidebarrightbutton" class="btn">
+          <mat-icon [matBadge]="cartCount" matBadgeColor="warn" [matBadgeHidden]="hidden">shopping_cart</mat-icon>
+
+        </a>
+        <div (click)="toggleCount()" class="logo">Le Phenicien</div>
+        <a (click)="openSideBarLeft()" type="button" id="sidebarleftbutton" class="btn">
+            <fa-icon [icon]="faAlignLeft"></fa-icon>
+        </a>
+    </div>
+</nav>
+</header>

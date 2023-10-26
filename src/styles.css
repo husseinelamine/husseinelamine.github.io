@@ -1,0 +1,27 @@
+
+
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.primaryBGColor{
+  background-color: #b70021;
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+.primaryColor{
+  color:#b70021;
+}
+* {font-family: 'Poppins', sans-serif;}
+body{
+  background: #ffffff;
+  font-size: 13px;
+  color: #212529;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
