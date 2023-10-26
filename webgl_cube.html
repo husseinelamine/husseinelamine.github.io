@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Cube Scene</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // Set up the scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create a cube with a basic shader
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.ShaderMaterial({
+            vertexShader: `
+                void main() {
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                void main() {
+                    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+                }
+            `
+        });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        // Set the camera position
+        camera.position.z = 5;
+
+        // Animation function
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the cube for animation
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            // Render the scene
+            renderer.render(scene, camera);
+        }
+
+        // Start the animation
+        animate();
+    </script>
+</body>
+
+</html>
