@@ -9,6 +9,16 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5BB8W2X');</script>
   <!-- End Google Tag Manager -->
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@v0.157.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@v0.157.0/examples/jsm/"
+      }
+    }
+  </script>
+
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -73,6 +83,7 @@
           <li><a href="#experience"> <span>Experience</span></a></li>
 <!--          <li><a href="#projects"> <span>Projects</span></a></li>-->
           <li><a href="#portfolio"> <span>Projects</span></a></li>
+          <li><a href="#3D"> <span>3D for fun</span></a></li>
           <li><a href="assets/pdf/CV.pdf" target="_blank"> <span>CV</span></a></li>
           <!-- <li><a href="#links"> <span>Resume & Links</span></a></li> -->
           <li><a href="#contacts"> <span>Contact</span></a></li>
@@ -302,7 +313,16 @@
 
   <!-- End Experience Section -->
 
-
+  <section id="3D" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>3D for fun</h2>
+      </div>
+      <div class="row">
+		<iframe src="index2.html" style="width:100%;height:500px;"></iframe>
+      </div>
+    </div>
+  </section>      
 
   <!-- Start Project Section -->
   <section id="portfolio" class="portfolio">
@@ -477,6 +497,9 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!--
+	<script type="module" src="assets/js/3d.js"></script>
+	-->
 
 </body>
 
