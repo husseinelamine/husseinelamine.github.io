@@ -2,6 +2,7 @@
 import SceneBase from './SceneBase.js';
 import Scene1 from './Scene1.js';
 import Scene2 from './Scene2.js';
+import Scene3 from './Scene3.js';
 
 let currentScene;
 
@@ -11,7 +12,11 @@ function init(selectedScene) {
         currentScene = new Scene1();
     } else if (selectedScene === 'scene2') {
         currentScene = new Scene2();
-    } else {
+    }
+    else if(selectedScene === 'scene3') {
+        currentScene = new Scene3();
+    }
+    else {
         console.error('Invalid scene selection');
     }
 }

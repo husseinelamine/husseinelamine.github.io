@@ -66,6 +66,7 @@
         <select id="sceneSelector">
             <option value="scene1">Scene 1</option>
             <option value="scene2">Scene 2</option>
+            <option value="scene3" selected>Scene 3</option>
         </select>
         <button id="loadScene">Load Scene</button>
         <button id="stop">Stop Scene</button>
@@ -93,8 +94,8 @@
 			});
 			$('#stop').click(function(){
 				destroy();
-               // $("#3dscript").remove();
-    		//	$("canvas").remove();
+                    $("#3dscript").remove();
+    		    $("canvas").remove();
 			});
 
 		});
