@@ -1,0 +1,105 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>3D Scenes</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative; /* Added to make the select positioning relative to the body */
+        }
+
+		#controls{
+			position: absolute;
+            top: 10px;
+            left: 10px;
+			opacity: 0.7; /* Initial opacity */
+            transition: opacity 0.3s ease; /* Transition effect on opacity change */
+
+
+		}
+		#controls:hover {
+			opacity: 1; /* Opacity on hover */
+		}
+
+        #sceneSelector {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@v0.157.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@v0.157.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script type="module" src="./assets/js/scene.js">
+	</script>
+</head>
+
+<body>
+    <div id="controls">
+        <select id="sceneSelector">
+            <option value="scene1">Scene 1</option>
+            <option value="scene2">Scene 2</option>
+        </select>
+        <button id="loadScene">Load Scene</button>
+        <button id="stop">Stop Scene</button>
+    </div>
+
+    <script type="module">
+		import { init, start, destroy} from './assets/js/scene.js';
+		function loadScene(){
+			destroy();
+			$("#3dscript").remove();
+			$("canvas").remove();
+			let script = document.createElement('script');
+			script.type = 'module';
+			script.src = './assets/js/scene.js';
+			script.id = '3dscript';
+			document.body.appendChild(script);
+			const selectedScene = $("#sceneSelector").val();
+			init(selectedScene);
+			start();
+		}
+		$(document).ready(function(){
+			loadScene();
+			$("#loadScene").click(function(){
+				loadScene();
+				destroy();
+				destroy();
+				loadScene();
+			});
+			$('#stop').click(function(){
+				destroy();
+			});
+
+		});
+    </script>
+</body>
+
+</html>
