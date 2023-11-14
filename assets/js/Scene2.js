@@ -7,14 +7,15 @@ class Scene2 extends SceneBase {
     constructor() {
         super();
         this.color = 0xff0000;
+        this.init();
     }
 
     init() {
         super.init();
 
         // Create sphere
-        const geometry = new THREE.SphereGeometry(1, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const geometry = new THREE.TetrahedronGeometry(1, 2);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
         const sphere = new THREE.Mesh(geometry, material);
         this.scene.add(sphere);
     }

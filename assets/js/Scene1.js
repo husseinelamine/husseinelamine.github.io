@@ -8,6 +8,7 @@ class Scene1 extends SceneBase {
     constructor() {
         super();
         this.color = 0x00ff00;
+        this.init();
     }
 
     init() {
@@ -21,8 +22,8 @@ class Scene1 extends SceneBase {
     }
 
     animate() {
+
         // Animation loop
-        console.log("animate : id: " + this.animationRequestId)
 
         this.animationRequestId = requestAnimationFrame(() => this.animate());
 

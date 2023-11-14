@@ -8,9 +8,6 @@ class SceneBase {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-
-        this.init();
-        this.start();
     }
 
     init() {
@@ -45,10 +42,6 @@ class SceneBase {
 
     animate() {
         // Animation loop
-        this.animationRequestId = requestAnimationFrame(() => this.animate());
-        console.log("animate : id: " + this.animationRequestId)
-
-        this.renderer.render(this.scene, this.camera);
     }
 }
 

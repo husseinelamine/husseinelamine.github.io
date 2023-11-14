@@ -74,7 +74,7 @@
     <script type="module">
 		import { init, start, destroy} from './assets/js/scene.js';
 		function loadScene(){
-			destroy();
+            destroy();
 			$("#3dscript").remove();
 			$("canvas").remove();
 			let script = document.createElement('script');
@@ -90,12 +90,11 @@
 			loadScene();
 			$("#loadScene").click(function(){
 				loadScene();
-				destroy();
-				destroy();
-				loadScene();
 			});
 			$('#stop').click(function(){
 				destroy();
+               // $("#3dscript").remove();
+    		//	$("canvas").remove();
 			});
 
 		});
