@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+
 import SceneBase from './SceneBase.js';
 
 class APlanet extends SceneBase{
@@ -52,7 +52,7 @@ class APlanet extends SceneBase{
         // Animation loop
     }
 
-    animate() {
+    wnimate() {
         // Animation loop
         this.animationRequestId = requestAnimationFrame(() => this.animate());
 

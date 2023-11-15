@@ -4,6 +4,7 @@ import Scene1 from './Scene1.js';
 import Scene2 from './Scene2.js';
 import Scene3 from './Scene3.js';
 import APlanet from './APlanet.js';
+import Heightmap from './Heightmap.js';
 
 let currentScene;
 
@@ -19,6 +20,9 @@ function init(selectedScene) {
     }
     else if(selectedScene === 'Aplanet') {
         currentScene = new APlanet();
+    }
+    else if(selectedScene === 'Heightmap') {
+        currentScene = new Heightmap();
     }
     else {
         console.error('Invalid scene selection');
