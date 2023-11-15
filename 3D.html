@@ -5,6 +5,10 @@
 <head>
     <meta charset="utf-8">
     <title>3D Scenes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -34,6 +38,14 @@
             padding: 10px;
             font-size: 16px;
             margin-right: 10px;
+        }
+
+        #stop{
+            font-size: 1.5rem;
+            color: #4caf50;
+            border: 3px #4caf50 groove;
+            padding: 0.2rem;
+            border-radius: 18%;
         }
 
 
@@ -68,8 +80,7 @@
             <option value="scene2">Scene 2</option>
             <option value="scene3" selected>Scene 3</option>
         </select>
-        <button id="loadScene">Load Scene</button>
-        <button id="stop">Stop Scene</button>
+        <span id="stop" aria-label="Close">X</span>
     </div>
 
     <script type="module">
@@ -89,9 +100,10 @@
 		}
 		$(document).ready(function(){
 			loadScene();
-			$("#loadScene").click(function(){
-				loadScene();
-			});
+            $("#sceneSelector").change(function(){
+                loadScene();
+            });
+
 			$('#stop').click(function(){
 				destroy();
                     $("#3dscript").remove();

@@ -27,7 +27,6 @@ class Scene1 extends SceneBase {
 
         this.animationRequestId = requestAnimationFrame(() => this.animate());
 
-        console.log("Scene1 animate");
         if(this.scene.children.length > 0) {
             // Rotate cube
             this.scene.children[0].rotation.x += 0.01;
@@ -38,7 +37,6 @@ class Scene1 extends SceneBase {
 
     destroy() {
         super.destroy();
-        console.log("Scene1 destroy");
     }
 }
 

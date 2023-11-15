@@ -24,7 +24,6 @@ class Scene2 extends SceneBase {
         // Animation loop
         this.animationRequestId = requestAnimationFrame(() => this.animate());
 
-        console.log("Scene2 animate");
         if(this.scene.children.length > 0) {
         // Rotate sphere
             this.scene.children[0].rotation.x += 0.01;
@@ -36,7 +35,6 @@ class Scene2 extends SceneBase {
 
     destroy() {
         super.destroy();
-        console.log("Scene2 destroy");
     }
     
 }
