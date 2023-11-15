@@ -147,7 +147,7 @@ class Heightmap extends SceneBase{
         
         const skybox = new THREE.Mesh( skyboxGeometry, materialArray );*/
 
-        const materialSkybox = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
+        const materialSkybox = new THREE.MeshBasicMaterial( { color: 0xbfd1e5, side: THREE.BackSide } );
         const skybox = new THREE.Mesh( skyboxGeometry, materialSkybox );
 
         this.scene.add( skybox );
