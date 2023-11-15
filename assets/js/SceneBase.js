@@ -2,9 +2,9 @@
 import * as THREE from 'three';
 
 class SceneBase {
-    constructor() {
+    constructor(fov = 75, aspect = window.innerWidth / window.innerHeight, near = 0.1, far = 1000) {
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera( fov, aspect, near, far);
         //this.camera.rotation.y = 45/180*Math.PI;
         //this.camera.position.x = 800;
         //this.camera.position.y = 100;
