@@ -15,19 +15,7 @@ class Heightmap extends SceneBase{
         this.onWindowResize = this.onWindowResize.bind(this);
     }
 
-    
-    init() {
-        super.init();
-        this.worldDepth = 32;
-        this.worldWidth = 32;
-        this.worldHalfWidth = this.worldWidth / 2;
-        this.worldHalfDepth = this.worldDepth / 2;
-        this.clock = new THREE.Clock();
-        this.data = this.generateHeight( this.worldWidth, this.worldDepth );
-
-        this.camera.position.y = this.getY( this.worldHalfWidth, this.worldHalfDepth ) * 100 + 100;
-        this.scene.background = new THREE.Color( this.color );
-        
+    calculateGeometries(){
         const matrix = new THREE.Matrix4();
 
         const pxGeometry = new THREE.PlaneGeometry( 100, 100 );
@@ -59,7 +47,6 @@ class Heightmap extends SceneBase{
         nzGeometry.rotateY( Math.PI );
         nzGeometry.translate( 0, 0, - 50 );
 
-        //
 
         const geometries = [];
 
@@ -109,8 +96,26 @@ class Heightmap extends SceneBase{
             }
 
         }
+        return geometries;
+    }
+    
+    init() {
+        super.init();
+        this.worldDepth = 32;
+        this.worldWidth = 32;
+        this.worldHalfWidth = this.worldWidth / 2;
+        this.worldHalfDepth = this.worldDepth / 2;
+        this.clock = new THREE.Clock();
+        this.data = this.generateHeight( this.worldWidth, this.worldDepth );
 
-        const geometry = BufferGeometryUtils.mergeGeometries( geometries );
+        this.camera.position.y = this.getY( this.worldHalfWidth, this.worldHalfDepth ) * 100 + 100;
+        this.scene.background = new THREE.Color( this.color );
+        
+        //
+
+        this.geometries = this.calculateGeometries();
+
+        const geometry = BufferGeometryUtils.mergeGeometries( this.geometries );
         geometry.computeBoundingSphere();
 
         const texture = new THREE.TextureLoader().load( 'assets/textures/minecraft/atlas.png' );
@@ -171,12 +176,11 @@ class Heightmap extends SceneBase{
 			
     }
     
-    generateHeight( width, height ) {
+    generateHeight( width, height, quality = 2 ) {
 
         const data = [], perlin = new ImprovedNoise(),
             size = width * height, z = Math.random() * 100;
 
-        let quality = 2;
 
         for ( let j = 0; j < 4; j ++ ) {
 
@@ -208,6 +212,7 @@ class Heightmap extends SceneBase{
         this.controls.update( this.clock.getDelta() );
 
         // Render the scene
+        
         this.renderer.render(this.scene, this.camera);
         this.stats.update();
     }

@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { StereoEffect } from 'three/addons/effects/StereoEffect.js';
+
 
 import SceneBase from './SceneBase.js';
 
@@ -30,8 +32,24 @@ class APlanet extends SceneBase{
         metrialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf, side: THREE.BackSide }));
 
         let skyboxGeo = new THREE.BoxGeometry( 10000, 10000, 10000);
+        let textCube = new THREE.CubeTextureLoader()
+        .setPath( 'assets/textures/skybox1/' )
+        .load( [ 'arid_ft.jpg', 'arid_bk.jpg', 'arid_up.jpg', 'arid_dn.jpg', 'arid_rt.jpg', 'arid_lf.jpg' ] );
         let skybox = new THREE.Mesh( skyboxGeo, metrialArray );
         this.scene.add( skybox );
+
+        const SphereGeo = new THREE.SphereGeometry( 100, 32, 32 );
+        const material = new THREE.MeshBasicMaterial( {color: 0xffffff, envMap:textCube, refractionRatio:0.95} );
+        this.spheres = [];
+        for(let i = 0; i < 500; i++) {
+            const mesh = new THREE.Mesh( SphereGeo, material );
+            mesh.position.x = Math.random() * 10000 - 5000;
+            mesh.position.y = Math.random() * 10000 - 5000;
+            mesh.position.z = Math.random() * 10000 - 5000;
+            mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
+            this.spheres.push(mesh);
+            this.scene.add( mesh );
+        }
 
         // Set up lighting
         const ambientLight = new THREE.AmbientLight(0x404040);
@@ -48,19 +66,36 @@ class APlanet extends SceneBase{
 
         // Set up camera position
 
-
+        //const effect = new StereoEffect( this.renderer );
+        //effect.setSize( window.innerWidth, window.innerHeight );
         // Animation loop
     }
 
-    wnimate() {
+    animate() {
         // Animation loop
         this.animationRequestId = requestAnimationFrame(() => this.animate());
 
         // Update controls
-        //this.orbitControls.update();
+        this.orbitControls.update();
+
+        this.render();
 
         // Render the scene
+    }
+    render(){
+        const timer = 0.0001 * Date.now();
+
+        for ( let i = 0, il = this.spheres.length; i < il; i ++ ) {
+
+            const sphere = this.spheres[ i ];
+
+            sphere.position.x = 5000 * Math.cos( timer + i );
+            sphere.position.y = 5000 * Math.sin( timer + i * 1.1 );
+
+        }
+
         this.renderer.render(this.scene, this.camera);
+
     }
 
     destroy() {

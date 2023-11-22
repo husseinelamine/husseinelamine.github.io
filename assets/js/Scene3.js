@@ -23,11 +23,12 @@ class Scene3 extends SceneBase {
 
         // Load the FBX object
         const loader = new GLTFLoader();
-        loader.load('assets/gltf/spear/spear.gltf', (obj) => {
+        loader.load('assets/gltf/sphere/sphere.gltf', (obj) => {
             // Adjust the position, scale, or any other properties of the loaded FBX object if needed
             let spear = obj.scene.children[0];
             spear.position.set(0, 0, 10); // Adjust the position
-            spear.scale.set(6, 6, 6); // Adjust the scale
+            let scale = 0.01;
+            spear.scale.set(scale, scale, scale); // Adjust the scale
             this.scene.add(spear);
             this.controls.target.copy(spear.position);
 
