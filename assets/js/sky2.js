@@ -22,6 +22,18 @@ let sphere;
 let spheresGroup;
 let rotx;
 let rotz;
+let diffx;
+let diffz;
+let diffy;
+let initialx = 4.5;
+let initialy = -5;
+let initialz = -7;
+let finalx = 0;
+let finaly = -1.5;
+let finalz = -3;
+let speed = 0.025;
+
+
 let positions = [
     { x: 0.5, y: 0.15, z: -1.8 },
     { x: -1.5, y: 0.35, z: -1.7 },
@@ -42,19 +54,28 @@ function init() {
     scene.add(ambientLight);
     controls = new OrbitControls(camera, renderer.domElement);
     spheres = [];
+    diffx = speed;
+    let nbTimes = Math.abs(finalx - initialx) / diffx;
+    diffz = Math.abs(finalz - initialz) / nbTimes;
+    diffy = Math.abs(finaly - initialy) / nbTimes;
     // Load the FBX object
     const loader = new GLTFLoader();
     loader.load('assets/gltf/office/office_sphere.glb', (obj) => {
         // Adjust the position, scale, or any other properties of the loaded FBX object if needed
         sphere = obj.scene.children[0];
-        sphere.position.set(4.5, -5, -7); // Adjust the position
+        sphere.position.set(initialx, initialy, initialz); // Adjust the position
         let scale = 0.1;
         sphere.scale.set(scale, scale, scale); // Adjust the scale
         scene.add(sphere);
         rotx = sphere.rotation.x;
         rotz = sphere.rotation.z;
-//        sphere.rotation.x += 0.28;
-  //      sphere.rotation.z -= 0.48;
+        //sphere.rotation.z -= 0.2;
+        camera.lookAt(sphere.position);
+
+        //controls.target = sphere.position;
+        //controls.update();
+
+        //      sphere.rotation.z -= 0.48;
 
         console.log(sphere.rotation);
     });
@@ -68,7 +89,8 @@ function start() {
     init();
     animate();
 }
-let rot=  0;
+let rot = 0;
+let translated = 0;
 function animate() {
     const time = performance.now() * 0.001;
 
@@ -81,18 +103,28 @@ function animate() {
         let x = sphere.position.x;
         let y = sphere.position.y;
         //sphere.position.set(0, -0.5, -3); // Adjust the position
-        
-        if(x>0){
-            sphere.position.x -= 0.02;
+
+
+
+        if (x > finalx) {
+            sphere.position.x -= diffx;
         }
-        if(y<-0.5){
-            sphere.position.y += 0.02;
+        if (y < finaly) {
+            sphere.position.y += diffy;
         }
-        if(z<-3){
-            sphere.position.z += 0.02;
+        if (z < finalz) {
+            sphere.position.z += diffz;
         }
 
-        if(x == 0 && y == -0.5 && z == -3){
+        if (x <= finalx && y >= finaly && z >= finalz) {
+            translated = 1;
+        }
+        if (translated == 1) {
+            
+        }
+
+
+        /*if(x == 0 && y == -0.5 && z == -3){
             if(sphere.rotation.x < rotx + 0.28)
                sphere.rotation.x += 0.01;
             if(sphere.rotation.z > rotz - 0.48)
@@ -100,7 +132,7 @@ function animate() {
             //sphere.rotation.x += 0.28;
             //sphere.rotation.z -= 0.48;
             //rot = 1;
-        }
+        }*/
 
         //if (z < -5) {
         //    sphere.position.z += 0.15;
