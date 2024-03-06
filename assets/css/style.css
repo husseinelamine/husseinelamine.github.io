@@ -386,9 +386,8 @@ section .container {
 # About
 --------------------------------------------------------------*/
 .about-me .profile{
-  border-radius: 50%;
-  transform: rotate(-2deg);
-  max-width: 58%;
+  border-radius: 17%;
+
 }
 
 .about-me .content h3 {
