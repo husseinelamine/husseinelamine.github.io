@@ -5,17 +5,9 @@ import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 
 
-let element;
-let scene;
-let camera;
-let renderer;
-let starsPos = [];
-let materialShader;
-let sphereGeo;
-let animationRequestId;
-
-let controls;
-let phongmaterial;
+let element, scene, camera, renderer;
+let starsPos = [], materialShader, sphereGeo;
+let animationRequestId, controls, phongmaterial;
 start();
 function init() {
     element = $("#main-canvas");
@@ -58,28 +50,18 @@ function init() {
         
     }
     let starsGeom = BufferGeometryUtils.mergeBufferGeometries(starsPos);
-
-
-    /*phongmaterial.onBeforeCompile = shader => {
-        shader.uniforms.time = { value: 0 };
-        shader.uniforms.speed = { value: 1 };
-        shader.vertexShader =
-            `
-    uniform float time;
-    uniform float speed;
-    ` + shader.vertexShader;
-        shader.vertexShader = shader.vertexShader.replace(
-            `#include <begin_vertex>`,
-            `
-      vec3 transformed = vec3( position );
-      transformed.z = mod(10.0 + position.z + (speed * time), 20.) - 10.;
-      `
-        );
-        materialShader = shader;
-    };*/
-
     let stars = new THREE.Mesh(starsGeom, phongmaterial);
     scene.add(stars);
+
+
+    document.addEventListener('resize', onWindowResize, false);
+
+}
+
+function onWindowResize() {
+    //camera.aspect = element.width() / element.height();
+    //camera.updateProjectionMatrix();
+    renderer.setSize(element.width(), element.height(), false);
 }
 function start() {
     init();
